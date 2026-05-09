@@ -1,12 +1,23 @@
 {
-  "version": "15.11.0-github-requirements-fix",
-  "base": "15.10.0-github-ready-production",
-  "fix": "requirements-dev.txt missing at repository root",
-  "pytest_ok": true,
-  "compile_ok": true,
+  "version": "15.15.0-github-full-reload-production",
+  "base_lineage": [
+    "v15.10.0-github-ready-production",
+    "v15.11.0-github-requirements-fix",
+    "v15.12.0-github-release-artifact-fix",
+    "v15.13.0-github-pyinstaller-dist-fix",
+    "v15.14.0-github-pyinstaller-specpath-fix",
+    "v15.15.0-github-force-build-script-root-fix"
+  ],
+  "architecture": "MVC + service layer + repositories + DAO-factory",
+  "release_quality": "full-reload-github-ready-tested-refactored-robust",
   "validated_uploaded_xml_rows": 17,
+  "dates": [
+    "2026-05-05",
+    "2026-05-06"
+  ],
   "may_5_arrivals": 9,
   "may_6_arrivals": 8,
   "persons": 28,
-  "rooms_distinct": 16
+  "rooms_distinct": 16,
+  "goal": "Application Windows portable réception/night audit générant des documents hôtel depuis XML Opera Cloud, avec templates, PDF WeasyPrint, Excel/DOCX, impression, mode secours, RGPD, UX néophyte, workflows GitHub, tests et packaging client."
 }

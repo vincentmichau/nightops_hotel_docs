@@ -1,16 +1,28 @@
 [build-system]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
+
 [project]
 name = "nightops-hotel-documents"
-version = "15.11.0-github-requirements-fix"
+version = "15.15.0-github-full-reload-production"
+description = "NightOps Hotel Documents - GitHub-ready Windows portable project"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["openpyxl>=3.1.0", "jinja2>=3.1.0", "weasyprint>=62.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6.0", "pyinstaller>=6.0"]
+
+[project.scripts]
+nightops-hotel = "nightops_hotel.cli:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
 [tool.ruff]
 line-length = 120
 target-version = "py311"
