@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "nightops-hotel-documents"
+version = "15.11.0-github-requirements-fix"
+requires-python = ">=3.11"
+dependencies = ["openpyxl>=3.1.0", "jinja2>=3.1.0", "weasyprint>=62.0"]
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+[tool.ruff]
+line-length = 120
+target-version = "py311"

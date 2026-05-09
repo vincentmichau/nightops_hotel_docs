@@ -1,0 +1,21 @@
+{
+  "directories": [
+    "templates",
+    "assets",
+    "docs",
+    "data",
+    "exports",
+    "logs",
+    "backup",
+    "examples",
+    "support"
+  ],
+  "files": [
+    "nightops.exe",
+    "README.md",
+    "LICENSE.txt",
+    "CHANGELOG.md",
+    "qa-summary.md",
+    "release-report.md"
+  ]
+}

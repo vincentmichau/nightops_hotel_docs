@@ -1,23 +1,12 @@
 {
-  "version": "13.0.0-global-stable-release",
-  "architecture": "MVC + DAO-factory",
+  "version": "15.11.0-github-requirements-fix",
+  "base": "15.10.0-github-ready-production",
+  "fix": "requirements-dev.txt missing at repository root",
+  "pytest_ok": true,
+  "compile_ok": true,
   "validated_uploaded_xml_rows": 17,
-  "dates": [
-    "2026-05-05",
-    "2026-05-06"
-  ],
   "may_5_arrivals": 9,
   "may_6_arrivals": 8,
   "persons": 28,
-  "rooms_distinct": 16,
-  "new_capabilities": [
-    "progression consolidée v12.91 à v13.0 global-stable-release",
-    "cycle v13 stable-release figé",
-    "pipeline opérationnel complet verrouillé",
-    "tests de robustesse réels renforcés",
-    "procédures utilisateur du mode secours stabilisées",
-    "packaging exe portable amélioré",
-    "workflows GitHub avec artefacts consolidés",
-    "progression globale simultanée préservée"
-  ]
+  "rooms_distinct": 16
 }
