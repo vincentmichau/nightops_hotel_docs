@@ -1,0 +1,29 @@
+name: release-windows
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  release_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: pip install -r requirements-dev.txt
+      - run: ./scripts/run_tests.ps1
+      - run: ./scripts/qa_summary.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-windows-artifacts
+          path: |
+            test-report.xml
+            ruff-report.txt
+            qa-summary.md
+
+      - run: ./scripts/make_release.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-windows
+          path: |
+            nightops-portable.zip
+            release-report.md
+            qa-summary.md
