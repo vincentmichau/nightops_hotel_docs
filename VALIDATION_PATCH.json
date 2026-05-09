@@ -1,0 +1,6 @@
+{
+  "version": "15.12.0-github-release-artifact-fix",
+  "base": "v15.11.0-github-requirements-fix / objectif v15.10 préservé",
+  "fix": "release_windows succeeded without producing nightops-portable.zip",
+  "expected_artifact": "release-windows containing nightops-portable.zip"
+}
