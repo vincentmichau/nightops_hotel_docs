@@ -1,6 +1,13 @@
 {
-  "version": "15.14.0-github-pyinstaller-specpath-fix",
-  "base": "v15.13.0-github-pyinstaller-dist-fix / objectif v15.10 préservé",
-  "fix": "PyInstaller spec resolved entrypoint relative to packaging/pyinstaller instead of repository root",
-  "expected_result": "PyInstaller finds src/nightops_hotel/cli.py, generates nightops.exe and nightops-portable.zip"
+  "version": "15.16.0-github-reports-artifacts-fix",
+  "base": "v15.15.0-github-full-reload-production",
+  "fix": "test-report.xml and ruff-report.txt missing from GitHub artifacts",
+  "expected_artifacts": [
+    "nightops-portable.zip",
+    "release-report.md",
+    "qa-summary.md",
+    "test-report.xml",
+    "ruff-report.txt"
+  ],
+  "quality_rule": "if reports are missing, workflow must fail instead of succeeding silently"
 }
