@@ -1,6 +1,6 @@
 {
-  "version": "15.13.0-github-pyinstaller-dist-fix",
-  "base": "v15.11.0-github-requirements-fix / objectif v15.10 préservé",
-  "fix": "PyInstaller build complete but dist/nightops or dist/nightops.exe not found",
-  "expected_result": "release-windows artifact containing nightops-portable.zip with nightops.exe"
+  "version": "15.14.0-github-pyinstaller-specpath-fix",
+  "base": "v15.13.0-github-pyinstaller-dist-fix / objectif v15.10 préservé",
+  "fix": "PyInstaller spec resolved entrypoint relative to packaging/pyinstaller instead of repository root",
+  "expected_result": "PyInstaller finds src/nightops_hotel/cli.py, generates nightops.exe and nightops-portable.zip"
 }

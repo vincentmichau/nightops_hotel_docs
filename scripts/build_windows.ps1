@@ -1,19 +1,25 @@
 $ErrorActionPreference = "Stop"
 
-Write-Host "== NightOps build_windows.ps1 =="
+Write-Host "== NightOps build_windows.ps1 v15.14 =="
 Write-Host "Repository root: $PWD"
 
 ./scripts/run_tests.ps1
 
-if (!(Test-Path "packaging/pyinstaller/nightops_hotel.spec")) {
-  throw "Spec PyInstaller manquant: packaging/pyinstaller/nightops_hotel.spec"
+$SpecPath = "packaging/pyinstaller/nightops_hotel.spec"
+$EntryPoint = "src/nightops_hotel/cli.py"
+
+if (!(Test-Path $SpecPath)) {
+  throw "Spec PyInstaller manquant: $SpecPath"
+}
+if (!(Test-Path $EntryPoint)) {
+  throw "Entrée PyInstaller manquante: $EntryPoint"
 }
 
 if (Test-Path "build") { Remove-Item "build" -Recurse -Force }
 if (Test-Path "dist") { Remove-Item "dist" -Recurse -Force }
 if (Test-Path "nightops-portable.zip") { Remove-Item "nightops-portable.zip" -Force }
 
-python -m PyInstaller --clean --noconfirm packaging/pyinstaller/nightops_hotel.spec
+python -m PyInstaller --clean --noconfirm $SpecPath
 
 if (!(Test-Path "dist")) {
   throw "Dossier dist manquant après PyInstaller"
@@ -24,8 +30,11 @@ Get-ChildItem "dist" -Recurse -Force | Format-List FullName,Length
 
 $exeCandidates = Get-ChildItem "dist" -Recurse -Filter "*.exe" -File -ErrorAction SilentlyContinue
 if ($exeCandidates.Count -eq 0) {
-  throw "Aucun .exe généré par PyInstaller. Vérifier packaging/pyinstaller/nightops_hotel.spec et l'entrée src/nightops_hotel/cli.py"
+  throw "Aucun .exe généré par PyInstaller. Vérifier $SpecPath et $EntryPoint"
 }
+
+Write-Host "== EXE détectés =="
+$exeCandidates | Format-List FullName,Length
 
 $portableRoot = "dist/nightops"
 if (Test-Path $portableRoot) {

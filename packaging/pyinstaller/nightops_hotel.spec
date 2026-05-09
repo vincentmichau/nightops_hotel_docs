@@ -1,20 +1,32 @@
 # -*- mode: python ; coding: utf-8 -*-
 from pathlib import Path
 
+# PyInstaller executes this spec from the spec directory context on GitHub.
+# SPECPATH is provided by PyInstaller and points to packaging/pyinstaller.
+# Therefore project_root must be two levels above SPECPATH, not Path.cwd().
 block_cipher = None
-project_root = Path.cwd()
+spec_dir = Path(SPECPATH).resolve()
+project_root = spec_dir.parent.parent
+src_root = project_root / "src"
+entrypoint = src_root / "nightops_hotel" / "cli.py"
+
+if not entrypoint.exists():
+    raise FileNotFoundError(f"Entrée PyInstaller introuvable: {entrypoint}")
 
 _datas = []
 for item in ["README.md", "CHANGELOG.md", "LICENSE.txt", "VALIDATION_UPLOAD_XML.json"]:
-    if (project_root / item).exists():
-        _datas.append((item, "."))
+    source = project_root / item
+    if source.exists():
+        _datas.append((str(source), "."))
+
 for folder in ["docs", "templates", "assets", "examples"]:
-    if (project_root / folder).exists():
-        _datas.append((folder, folder))
+    source = project_root / folder
+    if source.exists():
+        _datas.append((str(source), folder))
 
 a = Analysis(
-    ["src/nightops_hotel/cli.py"],
-    pathex=[str(project_root), str(project_root / "src")],
+    [str(entrypoint)],
+    pathex=[str(project_root), str(src_root)],
     binaries=[],
     datas=_datas,
     hiddenimports=["nightops_hotel"],
